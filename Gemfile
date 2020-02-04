@@ -47,6 +47,7 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "webdrivers"
   gem "rspec_junit_formatter"
+  gem "simplecov"
 end
 
 group :development do
