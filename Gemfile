@@ -55,6 +55,7 @@ group :development, :test do
   gem "webdrivers"
   gem "rspec_junit_formatter"
   gem "simplecov"
+  gem "faker"
 end
 
 group :development do
