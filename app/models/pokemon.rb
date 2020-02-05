@@ -1,4 +1,7 @@
 class Pokemon < ApplicationRecord
+  has_many :poke_abilities, dependent: :destroy
+  has_many :abilities, through: :poke_abilities
+
   validates :number, presence: true
   validates :name, presence: true
   validates :type1, presence: true
