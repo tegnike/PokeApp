@@ -1,4 +1,5 @@
 class Pokemon < ApplicationRecord
+  has_many :my_pokemons, dependent: :destroy
   has_many :poke_abilities, dependent: :destroy
   has_many :abilities, through: :poke_abilities
 

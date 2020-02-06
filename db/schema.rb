@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_160110) do
-
+ActiveRecord::Schema.define(version: 2020_02_06_134841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,6 +31,36 @@ ActiveRecord::Schema.define(version: 2020_02_05_160110) do
     t.integer "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "my_poke_abilities", force: :cascade do |t|
+    t.bigint "my_pokemon_id"
+    t.bigint "ability_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ability_id"], name: "index_my_poke_abilities_on_ability_id"
+    t.index ["my_pokemon_id", "ability_id"], name: "index_my_poke_abilities_on_my_pokemon_id_and_ability_id", unique: true
+    t.index ["my_pokemon_id"], name: "index_my_poke_abilities_on_my_pokemon_id"
+  end
+
+  create_table "my_poke_items", force: :cascade do |t|
+    t.bigint "my_pokemon_id"
+    t.bigint "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_my_poke_items_on_item_id"
+    t.index ["my_pokemon_id", "item_id"], name: "index_my_poke_items_on_my_pokemon_id_and_item_id", unique: true
+    t.index ["my_pokemon_id"], name: "index_my_poke_items_on_my_pokemon_id"
+  end
+
+  create_table "my_poke_moves", force: :cascade do |t|
+    t.bigint "my_pokemon_id"
+    t.bigint "move_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["move_id"], name: "index_my_poke_moves_on_move_id"
+    t.index ["my_pokemon_id", "move_id"], name: "index_my_poke_moves_on_my_pokemon_id_and_move_id", unique: true
+    t.index ["my_pokemon_id"], name: "index_my_poke_moves_on_my_pokemon_id"
   end
 
   create_table "my_pokemons", force: :cascade do |t|
@@ -97,6 +126,12 @@ ActiveRecord::Schema.define(version: 2020_02_05_160110) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "my_poke_abilities", "abilities"
+  add_foreign_key "my_poke_abilities", "my_pokemons"
+  add_foreign_key "my_poke_items", "items"
+  add_foreign_key "my_poke_items", "my_pokemons"
+  add_foreign_key "my_poke_moves", "moves"
+  add_foreign_key "my_poke_moves", "my_pokemons"
   add_foreign_key "my_pokemons", "pokemons"
   add_foreign_key "my_pokemons", "users"
   add_foreign_key "poke_abilities", "abilities"

@@ -1,4 +1,10 @@
 class MyPokemon < ApplicationRecord
+  has_one :my_poke_ability, dependent: :destroy
+  has_one :ability, through: :my_poke_ability
+  has_many :my_poke_moves, dependent: :destroy
+  has_many :moves, through: :my_poke_moves
+  has_one :my_poke_item, dependent: :destroy
+  has_one :item, through: :my_poke_item
   belongs_to :user
   belongs_to :pokemon
 

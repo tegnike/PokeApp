@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe MyPokemon, type: :model do
   let(:my_pokemon) { create(:my_pokemon) }
