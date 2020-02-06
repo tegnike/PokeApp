@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_05_152629) do
+ActiveRecord::Schema.define(version: 2020_02_05_160110) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +32,30 @@ ActiveRecord::Schema.define(version: 2020_02_05_152629) do
     t.integer "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "my_pokemons", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "pokemon_id"
+    t.integer "nature"
+    t.integer "ev_h"
+    t.integer "ev_a"
+    t.integer "ev_b"
+    t.integer "ev_c"
+    t.integer "ev_d"
+    t.integer "ev_s"
+    t.integer "iv_h"
+    t.integer "iv_a"
+    t.integer "iv_b"
+    t.integer "iv_c"
+    t.integer "iv_d"
+    t.integer "iv_s"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pokemon_id"], name: "index_my_pokemons_on_pokemon_id"
+    t.index ["user_id", "pokemon_id"], name: "index_my_pokemons_on_user_id_and_pokemon_id"
+    t.index ["user_id"], name: "index_my_pokemons_on_user_id"
   end
 
   create_table "poke_abilities", force: :cascade do |t|
@@ -72,6 +97,8 @@ ActiveRecord::Schema.define(version: 2020_02_05_152629) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "my_pokemons", "pokemons"
+  add_foreign_key "my_pokemons", "users"
   add_foreign_key "poke_abilities", "abilities"
   add_foreign_key "poke_abilities", "pokemons"
 end
