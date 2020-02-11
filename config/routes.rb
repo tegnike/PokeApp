@@ -4,5 +4,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show]
   resources :my_pokemons, only: [:index, :create] do
+    collection do
+      get :auto_complete_name
+      post :auto_complete_ability
+      get :auto_complete_item
+      get :auto_complete_move
+      get :auto_complete_role
+    end
   end
 end

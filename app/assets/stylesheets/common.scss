@@ -1,0 +1,37 @@
+/* auto-complete */
+.ui-helper-hidden-accessible { display:none; }
+/* リスト全体の背景 */
+.ui-widget-content {
+  width: 500px;
+  border: 1px solid #c5c5c5;
+  background: #ffffff;
+  color: #333333;
+}
+/* 各リスト項目のパディング設定 */
+.ui-menu .ui-menu-item-wrapper {
+  position: relative;
+  padding: 3px 1em 3px .4em;
+}
+/* リスト hover 時のカラー */
+.ui-state-active {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: normal;
+  color: #ffffff;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+.ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 20px;
+}
+#jquery-ui-autocomplete label {
+    float: left;
+    margin-right: 0.5em;
+    color: black;
+    font-size: 15px;
+}

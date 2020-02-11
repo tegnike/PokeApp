@@ -16,6 +16,35 @@ class MyPokemonsController < ApplicationController
     end
   end
 
+  def auto_complete_name
+    names = Pokemon.select(:name)
+      .where("name like '%" + params[:term] + "%'").order(:number).map(&:name)
+    render json: names.to_json
+  end
+
+  def auto_complete_ability
+    abilities = Pokemon.find_by(name: params[:pokemon_name]).abilities.order(:id).map(&:ability)
+    render json: abilities.to_json
+  end
+
+  def auto_complete_item
+    items = Item.select(:item)
+      .where("item like '%" + params[:term] + "%'").order(:id).map(&:item)
+    render json: items.to_json
+  end
+
+  def auto_complete_move
+    moves = Move.select(:move)
+      .where("move like '%" + params[:term] + "%'").order(:id).map(&:move)
+    render json: moves.to_json
+  end
+
+  def auto_complete_role
+    roles = MyPokemon.select(:role)
+      .where("role like '%" + params[:term] + "%'").order(:id).map(&:role).distinct
+    render json: roles.to_json
+  end
+
   private
     def my_pokemon_params
       params.require(:my_pokemon_form).permit(

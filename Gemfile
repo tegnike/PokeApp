@@ -37,12 +37,11 @@ gem "jbuilder", "~> 2.5"
 gem "bootsnap", ">= 1.1.0", require: false
 
 # bootstrap
+gem "jquery-ui-rails"
 gem "bootstrap-sass"
 gem "jquery-rails"
-
 # user gem
 gem "devise"
-
 # db seed
 gem "seed-fu", "~> 2.3"
 
