@@ -24,6 +24,7 @@ services:
       RAILS_ENV: development
     ports:
       - "3000:3000"
+    stdin_open: true
     tty: true
     links:
       - db
