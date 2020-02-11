@@ -1,0 +1,48 @@
+<h1>MyPokemons#index</h1>
+<p>Find me in app/views/my_pokemons/index.html.erb</p>
+<%= form_with(model: @my_pokemon, method: :post, url: my_pokemons_path, local: true) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+
+    <%= f.label :ability %>
+    <%= f.text_field :ability, class: "form-control" %>
+
+    <%= f.label :nature %>
+    <%= f.select :nature, MyPokemon.natures.keys, class: "form-control" %>
+
+    <%= f.label :item %>
+    <%= f.text_field :item, class: "form-control" %>
+
+    <%= f.label :ev_h %>
+    <%= f.select :ev_h, MyPokemon.ev_hs.keys, class: "form-control", value: 31 %>
+    <%= f.select :ev_a, MyPokemon.ev_as.keys, class: "form-control", value: 31 %>
+    <%= f.select :ev_b, MyPokemon.ev_bs.keys, class: "form-control", value: 31 %>
+    <%= f.select :ev_c, MyPokemon.ev_cs.keys, class: "form-control", value: 31 %>
+    <%= f.select :ev_d, MyPokemon.ev_ds.keys, class: "form-control", value: 31 %>
+    <%= f.select :ev_s, MyPokemon.ev_s.keys, class: "form-control", value: 31 %>
+
+    <%= f.label :iv_h %>
+    <%= f.number_field :iv_h, class: "form-control" %>
+    <%= f.number_field :iv_a, class: "form-control" %>
+    <%= f.number_field :iv_b, class: "form-control" %>
+    <%= f.number_field :iv_c, class: "form-control" %>
+    <%= f.number_field :iv_d, class: "form-control" %>
+    <%= f.number_field :iv_s, class: "form-control" %>
+
+    <%= f.label :move %>
+    <%= f.text_field :move_1, class: "form-control" %>
+    <%= f.text_field :move_2, class: "form-control" %>
+    <%= f.text_field :move_3, class: "form-control" %>
+    <%= f.text_field :move_4, class: "form-control" %>
+
+    <%= f.label :role %>
+    <%= f.text_field :role, class: "form-control" %>
+
+    <div class="action">
+      <%= f.submit "登録", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,27 +1,58 @@
 class MyPokemon < ApplicationRecord
   has_one :my_poke_ability, dependent: :destroy
   has_one :ability, through: :my_poke_ability
+
   has_many :my_poke_moves, dependent: :destroy
   has_many :moves, through: :my_poke_moves
+
   has_one :my_poke_item, dependent: :destroy
   has_one :item, through: :my_poke_item
+
   belongs_to :user
   belongs_to :pokemon
 
-  validates :nature, presence: true
-  validates :ev_h, presence: true, numericality: { less_than_or_equal_to: 31 }
-  validates :ev_a, presence: true, numericality: { less_than_or_equal_to: 31 }
-  validates :ev_b, presence: true, numericality: { less_than_or_equal_to: 31 }
-  validates :ev_c, presence: true, numericality: { less_than_or_equal_to: 31 }
-  validates :ev_d, presence: true, numericality: { less_than_or_equal_to: 31 }
-  validates :ev_s, presence: true, numericality: { less_than_or_equal_to: 31 }
-  validates :iv_h, presence: true, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_a, presence: true, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_b, presence: true, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_c, presence: true, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_d, presence: true, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_s, presence: true, numericality: { less_than_or_equal_to: 252 }
-  validates :role, presence: true, length: { maximum: 20 }
+  enum ev_h: {
+    "31": 31, "30": 30, "29": 29, "28": 28, "27": 27, "26": 26,
+    "25": 25, "24": 24, "23": 23, "22": 22, "21": 21, "20": 20,
+    "19": 19, "18": 18, "17": 17, "16": 16, "15": 15, "14": 14,
+    "13": 13, "12": 12, "11": 11, "10": 10, "9": 9, "8": 8, "7": 7,
+    "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "0": 0, "-": 999
+  }, _prefix: true
+  enum ev_a: {
+    "31": 31, "30": 30, "29": 29, "28": 28, "27": 27, "26": 26,
+    "25": 25, "24": 24, "23": 23, "22": 22, "21": 21, "20": 20,
+    "19": 19, "18": 18, "17": 17, "16": 16, "15": 15, "14": 14,
+    "13": 13, "12": 12, "11": 11, "10": 10, "9": 9, "8": 8, "7": 7,
+    "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "0": 0, "-": 999
+  }, _prefix: true
+  enum ev_b: {
+    "31": 31, "30": 30, "29": 29, "28": 28, "27": 27, "26": 26,
+    "25": 25, "24": 24, "23": 23, "22": 22, "21": 21, "20": 20,
+    "19": 19, "18": 18, "17": 17, "16": 16, "15": 15, "14": 14,
+    "13": 13, "12": 12, "11": 11, "10": 10, "9": 9, "8": 8, "7": 7,
+    "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "0": 0, "-": 999
+  }, _prefix: true
+  enum ev_c: {
+    "31": 31, "30": 30, "29": 29, "28": 28, "27": 27, "26": 26,
+    "25": 25, "24": 24, "23": 23, "22": 22, "21": 21, "20": 20,
+    "19": 19, "18": 18, "17": 17, "16": 16, "15": 15, "14": 14,
+    "13": 13, "12": 12, "11": 11, "10": 10, "9": 9, "8": 8, "7": 7,
+    "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "0": 0, "-": 999
+  }, _prefix: true
+  enum ev_d: {
+    "31": 31, "30": 30, "29": 29, "28": 28, "27": 27, "26": 26,
+    "25": 25, "24": 24, "23": 23, "22": 22, "21": 21, "20": 20,
+    "19": 19, "18": 18, "17": 17, "16": 16, "15": 15, "14": 14,
+    "13": 13, "12": 12, "11": 11, "10": 10, "9": 9, "8": 8, "7": 7,
+    "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "0": 0, "-": 999
+  }, _prefix: true
+  enum ev_s: {
+    "31": 31, "30": 30, "29": 29, "28": 28, "27": 27, "26": 26,
+    "25": 25, "24": 24, "23": 23, "22": 22, "21": 21, "20": 20,
+    "19": 19, "18": 18, "17": 17, "16": 16, "15": 15, "14": 14,
+    "13": 13, "12": 12, "11": 11, "10": 10, "9": 9, "8": 8, "7": 7,
+    "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "0": 0, "-": 999
+  }, _prefix: true
 
   enum nature: {
     hardy: 0, lonely: 1, brave: 2, adamant: 3, naughty: 4,

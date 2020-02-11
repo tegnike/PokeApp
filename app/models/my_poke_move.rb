@@ -1,7 +1,6 @@
 class MyPokeMove < ApplicationRecord
   belongs_to :my_pokemon
   belongs_to :move
-  validates :my_pokemon_id, presence: true
   validates :move_id, presence: true
   validate :moves_number
 
