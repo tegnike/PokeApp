@@ -16,21 +16,21 @@
     <%= f.label :item %>
     <%= f.text_field :item, class: "form-control" %>
 
-    <%= f.label :ev_h %>
-    <%= f.select :ev_h, MyPokemon.ev_hs.keys, class: "form-control", value: 31 %>
-    <%= f.select :ev_a, MyPokemon.ev_as.keys, class: "form-control", value: 31 %>
-    <%= f.select :ev_b, MyPokemon.ev_bs.keys, class: "form-control", value: 31 %>
-    <%= f.select :ev_c, MyPokemon.ev_cs.keys, class: "form-control", value: 31 %>
-    <%= f.select :ev_d, MyPokemon.ev_ds.keys, class: "form-control", value: 31 %>
-    <%= f.select :ev_s, MyPokemon.ev_s.keys, class: "form-control", value: 31 %>
-
     <%= f.label :iv_h %>
-    <%= f.number_field :iv_h, class: "form-control" %>
-    <%= f.number_field :iv_a, class: "form-control" %>
-    <%= f.number_field :iv_b, class: "form-control" %>
-    <%= f.number_field :iv_c, class: "form-control" %>
-    <%= f.number_field :iv_d, class: "form-control" %>
-    <%= f.number_field :iv_s, class: "form-control" %>
+    <%= f.select :iv_h, MyPokemon.iv_hs.keys, class: "form-control", value: 31 %>
+    <%= f.select :iv_a, MyPokemon.iv_as.keys, class: "form-control", value: 31 %>
+    <%= f.select :iv_b, MyPokemon.iv_bs.keys, class: "form-control", value: 31 %>
+    <%= f.select :iv_c, MyPokemon.iv_cs.keys, class: "form-control", value: 31 %>
+    <%= f.select :iv_d, MyPokemon.iv_ds.keys, class: "form-control", value: 31 %>
+    <%= f.select :iv_s, MyPokemon.iv_s.keys, class: "form-control", value: 31 %>
+
+    <%= f.label :ev_h %>
+    <%= f.number_field :ev_h, class: "form-control" %>
+    <%= f.number_field :ev_a, class: "form-control" %>
+    <%= f.number_field :ev_b, class: "form-control" %>
+    <%= f.number_field :ev_c, class: "form-control" %>
+    <%= f.number_field :ev_d, class: "form-control" %>
+    <%= f.number_field :ev_s, class: "form-control" %>
 
     <%= f.label :move %>
     <%= f.text_field :move_1, class: "form-control" %>

@@ -51,7 +51,7 @@ $(function() {
     jQuery(this).autocomplete("search", "");
   });
 
-  $("#my_pokemon_form_iv_h, #my_pokemon_form_iv_a, #my_pokemon_form_iv_b, #my_pokemon_form_iv_c, #my_pokemon_form_iv_d, #my_pokemon_form_iv_s").autocomplete({
+  $("#my_pokemon_form_ev_h, #my_pokemon_form_ev_a, #my_pokemon_form_ev_b, #my_pokemon_form_ev_c, #my_pokemon_form_ev_d, #my_pokemon_form_ev_s").autocomplete({
     autoFocus: true,
     minLength: 0,
     source: ["252", "4"]
