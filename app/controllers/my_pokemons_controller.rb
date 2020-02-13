@@ -3,6 +3,7 @@ class MyPokemonsController < ApplicationController
 
   def index
     @my_pokemon = MyPokemonForm.new
+    @my_pokemons = current_user.my_pokemons.all
   end
 
   def create

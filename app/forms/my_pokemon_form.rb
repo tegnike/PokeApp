@@ -78,5 +78,4 @@ class MyPokemonForm
       end
     end
   end
-
 end

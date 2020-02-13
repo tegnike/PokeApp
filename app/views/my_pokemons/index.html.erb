@@ -46,3 +46,56 @@
     </div>
   </div>
 <% end %>
+
+<table border="1">
+  <tr>
+    <th>名前</th>
+    <th>特性</th>
+    <th>性格</th>
+    <th>持ち物</th>
+    <th>個体値</th>
+    <th>努力値</th>
+    <th>実数値</th>
+    <th>技</th>
+    <th>役割</th>
+  </tr>
+  <% @my_pokemons.each do |pokemon| %>
+    <tr>
+      <td><%= pokemon.pokemon_name %></td>
+      <td><%= pokemon.ability %></td>
+      <td><%= pokemon.nature_i18n %></td>
+      <td><%= pokemon.item %></td>
+      <td>
+        <%= pokemon.iv_h %> -
+        <%= pokemon.iv_a %> -
+        <%= pokemon.iv_b %> -
+        <%= pokemon.iv_c %> -
+        <%= pokemon.iv_d %> -
+        <%= pokemon.iv_s %>
+      </td>
+      <td>
+        <%= pokemon.ev_h %> -
+        <%= pokemon.ev_a %> -
+        <%= pokemon.ev_b %> -
+        <%= pokemon.ev_c %> -
+        <%= pokemon.ev_d %> -
+        <%= pokemon.ev_s %>
+      </td>
+      <td>
+        <%= pokemon.calc_h %> -
+        <%= pokemon.calc_a %> -
+        <%= pokemon.calc_b %> -
+        <%= pokemon.calc_c %> -
+        <%= pokemon.calc_d %> -
+        <%= pokemon.calc_s %>
+      </td>
+      <td>
+        <% pokemon.moves.each do |move| %>
+          <%= move %><br>
+        <% end %>
+      </td>
+      <td><%= pokemon.role %></td>
+    </tr>
+  <% end %>
+
+</table>
