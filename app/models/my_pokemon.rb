@@ -84,66 +84,71 @@ class MyPokemon < ApplicationRecord
 
   def calc_h
     return "x" if iv_h == "-"
-    ((pokemon.bs_h + iv_h.to_i / 2 + ev_h / 8) + 60).floor
+    ((pokemon.bs_h + iv_h.to_i / 2.0 + ev_h / 8.0) + 60).floor
   end
 
   def calc_a
     return "x" if iv_a == "-"
+    calc_before_nature = ((pokemon.bs_a + iv_a.to_i / 2.0 + ev_a / 8.0) + 5)
     case nature
     when "lonely", "brave", "adamant", "naughty" then
-      (((pokemon.bs_a + iv_a.to_i / 2 + ev_a / 8) + 5) * 1.1).floor
+      (calc_before_nature * 1.1).floor
     when "bold", "timid", "modest", "calm" then
-      (((pokemon.bs_a + iv_a.to_i / 2 + ev_a / 8) + 5) * 0.9).floor
+      (calc_before_nature * 0.9).floor
     else
-      ((pokemon.bs_a + iv_a.to_i / 2 + ev_a / 8) + 5).floor
+      calc_before_nature.floor
     end
   end
 
   def calc_b
     return "x" if iv_b == "-"
+    calc_before_nature = ((pokemon.bs_b + iv_b.to_i / 2.0 + ev_b / 8.0) + 5)
     case nature
     when "bold", "impish", "lax", "relaxed" then
-      (((pokemon.bs_b + iv_b.to_i / 2 + ev_b / 8) + 5) * 1.1).floor
+      (calc_before_nature * 1.1).floor
     when "lonely", "mild", "hasty", "gentle" then
-      (((pokemon.bs_b + iv_b.to_i / 2 + ev_b / 8) + 5) * 0.9).floor
+      (calc_before_nature * 0.9).floor
     else
-      ((pokemon.bs_b + iv_b.to_i / 2 + ev_b / 8) + 5).floor
+      calc_before_nature.floor
     end
   end
 
   def calc_c
     return "x" if iv_c == "-"
+    calc_before_nature = ((pokemon.bs_c + iv_c.to_i / 2.0 + ev_c / 8.0) + 5)
     case nature
     when "modest", "mild", "quiet", "rash" then
-      (((pokemon.bs_c + iv_c.to_i / 2 + ev_c / 8) + 5) * 1.1).floor
+      (calc_before_nature * 1.1).floor
     when "adamant", "impish", "jolly", "careful" then
-      (((pokemon.bs_c + iv_c.to_i / 2 + ev_c / 8) + 5) * 0.9).floor
+      (calc_before_nature * 0.9).floor
     else
-      ((pokemon.bs_c + iv_c.to_i / 2 + ev_c / 8) + 5).floor
+      calc_before_nature.floor
     end
   end
 
   def calc_d
     return "x" if iv_d == "-"
+    calc_before_nature = ((pokemon.bs_d + iv_d.to_i / 2.0 + ev_d / 8.0) + 5)
     case nature
     when "calm", "gentle", "sassy", "careful" then
-      (((pokemon.bs_d + iv_d.to_i / 2 + ev_d / 8) + 5) * 1.1).floor
+      (calc_before_nature * 1.1).floor
     when "naughty", "lax", "naive", "rash" then
-      (((pokemon.bs_d + iv_d.to_i / 2 + ev_d / 8) + 5) * 0.9).floor
+      (calc_before_nature * 0.9).floor
     else
-      ((pokemon.bs_d + iv_d.to_i / 2 + ev_d / 8) + 5).floor
+      calc_before_nature.floor
     end
   end
 
   def calc_s
     return "x" if iv_s == "-"
+    calc_before_nature = ((pokemon.bs_s + iv_s.to_i / 2.0 + ev_s / 8.0) + 5)
     case nature
     when "timid", "hasty", "jolly", "naive" then
-      (((pokemon.bs_s + iv_s.to_i / 2 + ev_s / 8) + 5) * 1.1).floor
+      (calc_before_nature * 1.1).floor
     when "brave", "relaxed", "quiet", "sassy" then
-      (((pokemon.bs_s + iv_s.to_i / 2 + ev_s / 8) + 5) * 0.9).floor
+      (calc_before_nature * 0.9).floor
     else
-      ((pokemon.bs_s + iv_s.to_i / 2 + ev_s / 8) + 5).floor
+      calc_before_nature.floor
     end
   end
 end
