@@ -31,7 +31,6 @@ class MyPokemonForm
       ability_new
       item_new
       moves_new
-      byebug
       @pokemon.save
     end
   end
@@ -73,7 +72,6 @@ class MyPokemonForm
     moves = [move_1, move_2, move_3, move_4]
     moves.each do |move|
       if move.present?
-        byebug
         @pokemon.my_poke_moves.build(
           move: Move.find_by(move: move)
         )
