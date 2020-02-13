@@ -2,105 +2,131 @@
 
 <% if user_signed_in? %>
   <%= form_with(model: @my_pokemon, method: :post, url: my_pokemons_path, local: true) do |f| %>
-    <div class="field">
+    <div class="row first-row">
       <%= f.hidden_field :user_id, value: current_user.id %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name, class: "form-control" %>
+      <div class="col-md-2">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
 
-      <%= f.label :ability %>
-      <%= f.text_field :ability, class: "form-control" %>
+      <div class="col-md-2">
+        <%= f.label :ability %>
+        <%= f.text_field :ability, class: "form-control" %>
+      </div>
 
-      <%= f.label :nature %>
-      <%= f.select :nature, MyPokemon.natures.keys.map {|k| [I18n.t("enums.my_pokemon.nature.#{k}"), k]}, class: "form-control" %>
+      <div class="col-md-2">
+        <%= f.label :nature %>
+        <%= f.select :nature, MyPokemon.natures.keys.map {|k| [I18n.t("enums.my_pokemon.nature.#{k}"), k]}, class: "form-control" %>
+      </div>
 
-      <%= f.label :item %>
-      <%= f.text_field :item, class: "form-control" %>
+      <div class="col-md-2">
+        <%= f.label :item %>
+        <%= f.text_field :item, class: "form-control" %>
+      </div>
 
-      <%= f.label :iv %>
-      <%= f.select :iv_h, MyPokemon.iv_hs.keys, class: "form-control", value: 31 %>
-      <%= f.select :iv_a, MyPokemon.iv_as.keys, class: "form-control", value: 31 %>
-      <%= f.select :iv_b, MyPokemon.iv_bs.keys, class: "form-control", value: 31 %>
-      <%= f.select :iv_c, MyPokemon.iv_cs.keys, class: "form-control", value: 31 %>
-      <%= f.select :iv_d, MyPokemon.iv_ds.keys, class: "form-control", value: 31 %>
-      <%= f.select :iv_s, MyPokemon.iv_s.keys, class: "form-control", value: 31 %>
+      <div class="col-md-4">
+        <%= f.label :role %>
+        <%= f.text_field :role, class: "form-control" %>
+      </div>
+    </div>
 
-      <%= f.label :ev %>
-      <%= f.number_field :ev_h, class: "form-control" %>
-      <%= f.number_field :ev_a, class: "form-control" %>
-      <%= f.number_field :ev_b, class: "form-control" %>
-      <%= f.number_field :ev_c, class: "form-control" %>
-      <%= f.number_field :ev_d, class: "form-control" %>
-      <%= f.number_field :ev_s, class: "form-control" %>
-
+    <div class="second-row">
       <%= f.label :move %>
-      <%= f.text_field :move_1, class: "form-control" %>
-      <%= f.text_field :move_2, class: "form-control" %>
-      <%= f.text_field :move_3, class: "form-control" %>
-      <%= f.text_field :move_4, class: "form-control" %>
+      <div class="row">
+        <%= f.text_field :move_1, class: "form-control col-md-2" %>
+        <%= f.text_field :move_2, class: "form-control col-md-2" %>
+        <%= f.text_field :move_3, class: "form-control col-md-2" %>
+        <%= f.text_field :move_4, class: "form-control col-md-2" %>
+      </div>
+    </div>
 
-      <%= f.label :role %>
-      <%= f.text_field :role, class: "form-control" %>
+    <div class="row third-row">
+      <div class="col-md-5">
+        <%= f.label :iv %>
+        <div class="ivs">
+          <%= f.select :iv_h, MyPokemon.iv_hs.keys, class: "form-control", value: 31 %>
+          <%= f.select :iv_a, MyPokemon.iv_as.keys, class: "form-control", value: 31 %>
+          <%= f.select :iv_b, MyPokemon.iv_bs.keys, class: "form-control", value: 31 %>
+          <%= f.select :iv_c, MyPokemon.iv_cs.keys, class: "form-control", value: 31 %>
+          <%= f.select :iv_d, MyPokemon.iv_ds.keys, class: "form-control", value: 31 %>
+          <%= f.select :iv_s, MyPokemon.iv_s.keys, class: "form-control", value: 31 %>
+        </div>
+      </div>
 
-      <div class="action">
+      <div class="col-md-5">
+        <%= f.label :ev %>
+        <div class="evs">
+          <%= f.number_field :ev_h, class: "form-control" %>
+          <%= f.number_field :ev_a, class: "form-control" %>
+          <%= f.number_field :ev_b, class: "form-control" %>
+          <%= f.number_field :ev_c, class: "form-control" %>
+          <%= f.number_field :ev_d, class: "form-control" %>
+          <%= f.number_field :ev_s, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="action col-md-2">
         <%= f.submit "登録", class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
 <% end %>
 
-<table border="1">
+<table border="1" style="width: 100%;">
   <tr>
-    <th>名前</th>
-    <th>特性</th>
-    <th>性格</th>
-    <th>持ち物</th>
-    <th>個体値</th>
-    <th>努力値</th>
-    <th>実数値</th>
-    <th>技</th>
+    <th style="width: 9%">名前</th>
+    <th style="width: 10%">特性</th>
+    <th style="width: 8%">性格</th>
+    <th style="width: 11%">持ち物</th>
+    <th colspan="6">個体値・努力値・能力値</th>
+    <th style="width: 10%">技</th>
     <th>役割</th>
   </tr>
 
   <% if @my_pokemons %>
     <% @my_pokemons.each do |pokemon| %>
       <tr>
-        <td><%= pokemon.pokemon_name %></td>
-        <td><%= pokemon.ability %></td>
-        <td><%= pokemon.nature_i18n %></td>
-        <td><%= pokemon.item %></td>
-        <td>
-          <%= pokemon.iv_h %> -
-          <%= pokemon.iv_a %> -
-          <%= pokemon.iv_b %> -
-          <%= pokemon.iv_c %> -
-          <%= pokemon.iv_d %> -
-          <%= pokemon.iv_s %>
-        </td>
-        <td>
-          <%= pokemon.ev_h %> -
-          <%= pokemon.ev_a %> -
-          <%= pokemon.ev_b %> -
-          <%= pokemon.ev_c %> -
-          <%= pokemon.ev_d %> -
-          <%= pokemon.ev_s %>
-        </td>
-        <td>
-          <%= pokemon.calc_h %> -
-          <%= pokemon.calc_a %> -
-          <%= pokemon.calc_b %> -
-          <%= pokemon.calc_c %> -
-          <%= pokemon.calc_d %> -
-          <%= pokemon.calc_s %>
-        </td>
-        <td>
-          <% pokemon.moves.each do |move| %>
-            <%= move %><br>
-          <% end %>
-        </td>
-        <td><%= pokemon.role %></td>
+        <td rowspan="4"><%= pokemon.pokemon_name %></td>
+        <td rowspan="4"><%= pokemon.ability %></td>
+        <td rowspan="4"><%= pokemon.nature_i18n %></td>
+        <td rowspan="4"><%= pokemon.item %></td>
+        <td style="width: 5%">H</td>
+        <td style="width: 5%">A</td>
+        <td style="width: 5%">B</td>
+        <td style="width: 5%">C</td>
+        <td style="width: 5%">D</td>
+        <td style="width: 5%">S</td>
+        <td><%= pokemon.moves[0] %></td>
+        <td rowspan="4"><%= pokemon.role %></td>
+      </tr>
+      <tr>
+        <td><%= pokemon.iv_h %></td>
+        <td><%= pokemon.iv_a %></td>
+        <td><%= pokemon.iv_b %></td>
+        <td><%= pokemon.iv_c %></td>
+        <td><%= pokemon.iv_d %></td>
+        <td><%= pokemon.iv_s %></td>
+        <td><%= pokemon.moves[1] %></td>
+      </tr>
+      <tr>
+        <td><%= pokemon.ev_h %></td>
+        <td><%= pokemon.ev_a %></td>
+        <td><%= pokemon.ev_b %></td>
+        <td><%= pokemon.ev_c %></td>
+        <td><%= pokemon.ev_d %></td>
+        <td><%= pokemon.ev_s %></td>
+        <td><%= pokemon.moves[2] %></td>
+      </tr>
+      <tr>
+        <td><%= pokemon.calc_h %></td>
+        <td><%= pokemon.calc_a %></td>
+        <td><%= pokemon.calc_b %></td>
+        <td><%= pokemon.calc_c %></td>
+        <td><%= pokemon.calc_d %></td>
+        <td><%= pokemon.calc_s %></td>
+        <td><%= pokemon.moves[3] %></td>
       </tr>
     <% end %>
   <% end %>
-
 </table>

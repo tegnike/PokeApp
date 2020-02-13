@@ -1,3 +1,8 @@
+/* footer */
+footer {
+  margin-top: 30px;
+}
+
 /* auto-complete */
 .ui-helper-hidden-accessible { display:none; }
 /* リスト全体の背景 */
@@ -34,4 +39,60 @@ ul {
     margin-right: 0.5em;
     color: black;
     font-size: 15px;
+}
+
+/* my_pokemon forms */
+form {
+  margin-bottom: 30px;
+}
+
+#my_pokemon_form_nature {
+  height: 34px;
+  width: 100%;
+}
+
+.first-row {
+  margin-bottom: 10px;
+}
+
+.second-row {
+  margin-bottom: 10px;
+  .row {
+    margin: 0;
+  }
+  .form-control {
+    width: 16.6666666667%;
+    margin-right: 15px;
+  }
+}
+
+.third-row {
+  position: relative;
+  .ivs {
+    width: 100%;
+    select {
+      height: 34px;
+      width: 60px;
+    }
+  }
+  .evs {
+    width: 100%;
+    input {
+      width: 60px;
+      display: initial;
+    }
+  }
+  .action {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    input {
+      width: 80%;
+    }
+  }
+}
+
+/* my_pokemon index */
+td, th {
+  padding: 5px;
 }
