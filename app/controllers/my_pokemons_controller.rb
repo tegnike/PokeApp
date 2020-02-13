@@ -12,6 +12,7 @@ class MyPokemonsController < ApplicationController
       flash[:notice] = "登録しました。"
       redirect_to root_path
     else
+      @my_pokemons = current_user.my_pokemons.all
       flash[:alert] = "登録に失敗しました。"
       render "index"
     end
