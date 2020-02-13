@@ -89,6 +89,10 @@ RSpec.configure do |config|
   end
 
   config.example_status_persistence_file_path = "./spec/examples.txt"
+
+  # for devise
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
 end
 
 Shoulda::Matchers.configure do |config|
