@@ -40,18 +40,18 @@ class MyPokemonForm
       user: User.find(user_id.to_i),
       pokemon: Pokemon.find_by(name: name),
       nature: nature,
+      iv_h: integer_string?(iv_h),
+      iv_a: integer_string?(iv_a),
+      iv_b: integer_string?(iv_b),
+      iv_c: integer_string?(iv_c),
+      iv_d: integer_string?(iv_d),
+      iv_s: integer_string?(iv_s),
       ev_h: ev_h.to_i,
       ev_a: ev_a.to_i,
       ev_b: ev_b.to_i,
       ev_c: ev_c.to_i,
       ev_d: ev_d.to_i,
       ev_s: ev_s.to_i,
-      iv_h: iv_h.to_i,
-      iv_a: iv_a.to_i,
-      iv_b: iv_b.to_i,
-      iv_c: iv_c.to_i,
-      iv_d: iv_d.to_i,
-      iv_s: iv_s.to_i,
       role: role
     )
   end
@@ -78,4 +78,12 @@ class MyPokemonForm
       end
     end
   end
+
+  private
+    def integer_string?(str)
+      Integer(str)
+      str.to_i
+    rescue ArgumentError
+      999
+    end
 end
