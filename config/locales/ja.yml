@@ -1,0 +1,40 @@
+ja:
+  activemodel:
+    attributes:
+      my_pokemon_form:
+        name: ポケモン
+        ability: 特性
+        nature: 性格
+        item: 持ち物
+        iv: 個体値
+        ev: 努力値
+        move: 技
+        role: 役割
+  enums:
+    my_pokemon:
+      nature:
+        hardy: がんばりや
+        lonely: さみしがり
+        brave: ゆうかん
+        adamant: いじっぱり
+        naughty: やんちゃ
+        bold: ずぶとい
+        docile: すなお
+        relaxed: のんき
+        impish: わんぱく
+        lax: のうてんき
+        timid: おくびょう
+        hasty: せっかち
+        serious: まじめ
+        jolly: ようき
+        naive: むじゃき
+        modest: ひかえめ
+        mild: おっとり
+        quiet: れいせい
+        bashful: てれや
+        rash: うっかりや
+        calm: おだやか
+        gentle: おとなしい
+        sassy: なまいき
+        careful: しんちょう
+        quirky: きまぐれ
