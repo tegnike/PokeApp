@@ -54,12 +54,11 @@ class MyPokemon < ApplicationRecord
     "8": 8, "7": 7, "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1
   }, _prefix: true
 
-  enum nature: {
-    hardy: 0, lonely: 1, brave: 2, adamant: 3, naughty: 4,
-    bold: 5, docile: 6, relaxed: 7, impish: 8, lax: 9,
-    timid: 10, hasty: 11, serious: 12, jolly: 13, naive: 14,
-    modest: 15, mild: 16, quiet: 17, bashful: 18, rash: 19,
-    calm: 20, gentle: 21, sassy: 22, careful: 23, quirky: 24
+  enum status_up: {
+    "A": 0, "B": 1, "C": 2, "D": 3, "S": 4
+  }, _prefix: true
+  enum status_down: {
+    "A": 0, "B": 1, "C": 2, "D": 3, "S": 4
   }, _prefix: true
 
   def pokemon_name
@@ -89,66 +88,69 @@ class MyPokemon < ApplicationRecord
 
   def calc_a
     return "x" if iv_a == "x"
-    calc_before_nature = ((pokemon.bs_a + iv_a.to_i / 2.0 + ev_a / 8.0) + 5)
-    case nature
-    when "lonely", "brave", "adamant", "naughty" then
-      (calc_before_nature * 1.1).floor
-    when "bold", "timid", "modest", "calm" then
-      (calc_before_nature * 0.9).floor
+    calc_before_status = ((pokemon.bs_a + iv_a.to_i / 2.0 + ev_a / 8.0) + 5)
+    if status_up == "A"
+      (calc_before_status * 1.1).floor
+    elsif status_down == "A"
+      (calc_before_status * 0.9).floor
     else
-      calc_before_nature.floor
+      calc_before_status.floor
     end
   end
 
   def calc_b
     return "x" if iv_b == "x"
-    calc_before_nature = ((pokemon.bs_b + iv_b.to_i / 2.0 + ev_b / 8.0) + 5)
-    case nature
-    when "bold", "impish", "lax", "relaxed" then
-      (calc_before_nature * 1.1).floor
-    when "lonely", "mild", "hasty", "gentle" then
-      (calc_before_nature * 0.9).floor
+    calc_before_status = ((pokemon.bs_b + iv_b.to_i / 2.0 + ev_b / 8.0) + 5)
+    if status_up == "B"
+      (calc_before_status * 1.1).floor
+    elsif status_down == "B"
+      (calc_before_status * 0.9).floor
     else
-      calc_before_nature.floor
+      calc_before_status.floor
     end
   end
 
   def calc_c
     return "x" if iv_c == "x"
-    calc_before_nature = ((pokemon.bs_c + iv_c.to_i / 2.0 + ev_c / 8.0) + 5)
-    case nature
-    when "modest", "mild", "quiet", "rash" then
-      (calc_before_nature * 1.1).floor
-    when "adamant", "impish", "jolly", "careful" then
-      (calc_before_nature * 0.9).floor
+    calc_before_status = ((pokemon.bs_c + iv_c.to_i / 2.0 + ev_c / 8.0) + 5)
+    if status_up == "C"
+      (calc_before_status * 1.1).floor
+    elsif status_down == "C"
+      (calc_before_status * 0.9).floor
     else
-      calc_before_nature.floor
+      calc_before_status.floor
     end
   end
 
   def calc_d
     return "x" if iv_d == "x"
-    calc_before_nature = ((pokemon.bs_d + iv_d.to_i / 2.0 + ev_d / 8.0) + 5)
-    case nature
-    when "calm", "gentle", "sassy", "careful" then
-      (calc_before_nature * 1.1).floor
-    when "naughty", "lax", "naive", "rash" then
-      (calc_before_nature * 0.9).floor
+    calc_before_status = ((pokemon.bs_d + iv_d.to_i / 2.0 + ev_d / 8.0) + 5)
+    if status_up == "D"
+      (calc_before_status * 1.1).floor
+    elsif status_down == "D"
+      (calc_before_status * 0.9).floor
     else
-      calc_before_nature.floor
+      calc_before_status.floor
     end
   end
 
   def calc_s
     return "x" if iv_s == "x"
-    calc_before_nature = ((pokemon.bs_s + iv_s.to_i / 2.0 + ev_s / 8.0) + 5)
-    case nature
-    when "timid", "hasty", "jolly", "naive" then
-      (calc_before_nature * 1.1).floor
-    when "brave", "relaxed", "quiet", "sassy" then
-      (calc_before_nature * 0.9).floor
+    calc_before_status = ((pokemon.bs_s + iv_s.to_i / 2.0 + ev_s / 8.0) + 5)
+    if status_up == "S"
+      (calc_before_status * 1.1).floor
+    elsif status_down == "S"
+      (calc_before_status * 0.9).floor
     else
-      calc_before_nature.floor
+      calc_before_status.floor
+    end
+  end
+
+  def check_ev(ev)
+    if ev != 0
+      " (#{ev})"
+    else
+      ""
     end
   end
 end

@@ -50,7 +50,7 @@ class MyPokemonsController < ApplicationController
   private
     def my_pokemon_params
       params.require(:my_pokemon_form).permit(
-        :user_id, :name, :ability, :nature, :item,
+        :user_id, :name, :ability, :status_up, :status_down, :item,
         :ev_h, :ev_a, :ev_b, :ev_c, :ev_d, :ev_s,
         :iv_h, :iv_a, :iv_b, :iv_c, :iv_d, :iv_s,
         :move_1, :move_2, :move_3, :move_4, :role

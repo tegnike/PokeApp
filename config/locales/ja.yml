@@ -4,7 +4,8 @@ ja:
       my_pokemon_form:
         name: ポケモン
         ability: 特性
-        nature: 性格
+        status_up: 上昇
+        status_down: 下降
         item: 持ち物
         iv: 個体値
         ev: 努力値
@@ -12,29 +13,17 @@ ja:
         role: 役割
   enums:
     my_pokemon:
-      nature:
-        hardy: がんばりや
-        lonely: さみしがり
-        brave: ゆうかん
-        adamant: いじっぱり
-        naughty: やんちゃ
-        bold: ずぶとい
-        docile: すなお
-        relaxed: のんき
-        impish: わんぱく
-        lax: のうてんき
-        timid: おくびょう
-        hasty: せっかち
-        serious: まじめ
-        jolly: ようき
-        naive: むじゃき
-        modest: ひかえめ
-        mild: おっとり
-        quiet: れいせい
-        bashful: てれや
-        rash: うっかりや
-        calm: おだやか
-        gentle: おとなしい
-        sassy: なまいき
-        careful: しんちょう
-        quirky: きまぐれ
+      status_up:
+        h: HP
+        a: 攻撃
+        b: 防御
+        c: 特攻
+        d: 特防
+        s: 素早さ
+      status_down:
+        h: HP
+        a: 攻撃
+        b: 防御
+        c: 特攻
+        d: 特防
+        s: 素早さ

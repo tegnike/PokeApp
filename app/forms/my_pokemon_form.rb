@@ -1,14 +1,16 @@
 class MyPokemonForm
   include ActiveModel::Model
 
-  attr_accessor :user_id, :name, :ability, :nature, :item,
+  attr_accessor :user_id, :name, :ability, :item,
+                :status_up, :status_down,
                 :ev_h, :ev_a, :ev_b, :ev_c, :ev_d, :ev_s,
                 :iv_h, :iv_a, :iv_b, :iv_c, :iv_d, :iv_s,
                 :move_1, :move_2, :move_3, :move_4, :role
 
   validates :name, presence: true
   validates :ability, presence: true
-  validates :nature, presence: true
+  validates :status_up, presence: true
+  validates :status_down, presence: true
   validates :item, presence: true
   validates :ev_h, presence: true
   validates :ev_a, presence: true
@@ -39,7 +41,8 @@ class MyPokemonForm
     @pokemon = MyPokemon.new(
       user: User.find(user_id.to_i),
       pokemon: Pokemon.find_by(name: name),
-      nature: nature,
+      status_up: get_status(status_up),
+      status_down: get_status(status_down),
       iv_h: integer_string?(iv_h),
       iv_a: integer_string?(iv_a),
       iv_b: integer_string?(iv_b),
@@ -85,5 +88,20 @@ class MyPokemonForm
       str.to_i
     rescue ArgumentError
       999
+    end
+
+    def get_status(status)
+      case status
+      when "0"
+        "A"
+      when "1"
+        "B"
+      when "2"
+        "C"
+      when "3"
+        "D"
+      when "4"
+        "S"
+      end
     end
 end

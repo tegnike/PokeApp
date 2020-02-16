@@ -16,8 +16,19 @@
       </div>
 
       <div class="col-md-2">
-        <%= f.label :nature %>
-        <%= f.select :nature, MyPokemon.natures.keys.map {|k| [I18n.t("enums.my_pokemon.nature.#{k}"), k]}, class: "form-control" %>
+        <%= f.label "ステータス補正" %><br>
+        <%= f.label :status_up %>
+        <%= f.radio_button :status_up, 0 %>
+        <%= f.radio_button :status_up, 1 %>
+        <%= f.radio_button :status_up, 2 %>
+        <%= f.radio_button :status_up, 3 %>
+        <%= f.radio_button :status_up, 4 %><br>
+        <%= f.label :status_down %>
+        <%= f.radio_button :status_down, 0 %>
+        <%= f.radio_button :status_down, 1 %>
+        <%= f.radio_button :status_down, 2 %>
+        <%= f.radio_button :status_down, 3 %>
+        <%= f.radio_button :status_down, 4 %>
       </div>
 
       <div class="col-md-2">
@@ -75,56 +86,42 @@
 
 <table border="1" style="width: 100%;">
   <tr>
-    <th style="width: 9%">名前</th>
-    <th style="width: 10%">特性</th>
-    <th style="width: 8%">性格</th>
-    <th style="width: 11%">持ち物</th>
-    <th colspan="6">個体値・努力値・能力値</th>
-    <th style="width: 10%">技</th>
+    <th colspan="2">ポケモン</th>
+    <th>ステータス</th>
+    <th colspan="2">技</th>
     <th>役割</th>
   </tr>
 
   <% if @my_pokemons %>
     <% @my_pokemons.each do |pokemon| %>
       <tr>
-        <td rowspan="4"><%= pokemon.pokemon_name %></td>
-        <td rowspan="4"><%= pokemon.ability %></td>
-        <td rowspan="4"><%= pokemon.nature_i18n %></td>
-        <td rowspan="4"><%= pokemon.item %></td>
-        <td style="width: 5%">H</td>
-        <td style="width: 5%">A</td>
-        <td style="width: 5%">B</td>
-        <td style="width: 5%">C</td>
-        <td style="width: 5%">D</td>
-        <td style="width: 5%">S</td>
+        <td colspan="2"><%= pokemon.pokemon_name %></td>
+        <td>
+          <%= pokemon.calc_h %><%= pokemon.check_ev(pokemon.ev_h) %> -
+          <%= pokemon.calc_a %><%= pokemon.check_ev(pokemon.ev_a) %> -
+          <%= pokemon.calc_b %><%= pokemon.check_ev(pokemon.ev_b) %> -
+          <%= pokemon.calc_c %><%= pokemon.check_ev(pokemon.ev_c) %> -
+          <%= pokemon.calc_d %><%= pokemon.check_ev(pokemon.ev_d) %> -
+          <%= pokemon.calc_s %><%= pokemon.check_ev(pokemon.ev_s) %>
+        </td>
         <td><%= pokemon.moves[0] %></td>
-        <td rowspan="4"><%= pokemon.role %></td>
-      </tr>
-      <tr>
-        <td><%= pokemon.iv_h %></td>
-        <td><%= pokemon.iv_a %></td>
-        <td><%= pokemon.iv_b %></td>
-        <td><%= pokemon.iv_c %></td>
-        <td><%= pokemon.iv_d %></td>
-        <td><%= pokemon.iv_s %></td>
         <td><%= pokemon.moves[1] %></td>
+        <td rowspan="2"><%= pokemon.role %></td>
       </tr>
       <tr>
-        <td><%= pokemon.ev_h %></td>
-        <td><%= pokemon.ev_a %></td>
-        <td><%= pokemon.ev_b %></td>
-        <td><%= pokemon.ev_c %></td>
-        <td><%= pokemon.ev_d %></td>
-        <td><%= pokemon.ev_s %></td>
+        <td><%= pokemon.ability %></td>
+        <td><%= pokemon.item %></td>
+        <td>
+          <%= pokemon.iv_h %> -
+          <%= pokemon.iv_a %> -
+          <%= pokemon.iv_b %> -
+          <%= pokemon.iv_c %> -
+          <%= pokemon.iv_d %> -
+          <%= pokemon.iv_s %>
+          （<%= pokemon.status_up %> ↑
+          <%= pokemon.status_down %> ↓）
+        </td>
         <td><%= pokemon.moves[2] %></td>
-      </tr>
-      <tr>
-        <td><%= pokemon.calc_h %></td>
-        <td><%= pokemon.calc_a %></td>
-        <td><%= pokemon.calc_b %></td>
-        <td><%= pokemon.calc_c %></td>
-        <td><%= pokemon.calc_d %></td>
-        <td><%= pokemon.calc_s %></td>
         <td><%= pokemon.moves[3] %></td>
       </tr>
     <% end %>

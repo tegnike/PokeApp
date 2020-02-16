@@ -2,7 +2,8 @@ FactoryBot.define do
   factory :my_pokemon do
     user
     pokemon
-    nature { 1 }
+    status_up { 1 }
+    status_down { 1 }
     iv_h { 31 }
     iv_a { 31 }
     iv_b { 31 }

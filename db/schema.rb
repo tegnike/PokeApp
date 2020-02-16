@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_134841) do
+ActiveRecord::Schema.define(version: 2020_02_16_153901) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,7 +66,6 @@ ActiveRecord::Schema.define(version: 2020_02_06_134841) do
   create_table "my_pokemons", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "pokemon_id"
-    t.integer "nature"
     t.integer "ev_h"
     t.integer "ev_a"
     t.integer "ev_b"
@@ -82,6 +81,8 @@ ActiveRecord::Schema.define(version: 2020_02_06_134841) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status_up"
+    t.integer "status_down"
     t.index ["pokemon_id"], name: "index_my_pokemons_on_pokemon_id"
     t.index ["user_id", "pokemon_id"], name: "index_my_pokemons_on_user_id_and_pokemon_id"
     t.index ["user_id"], name: "index_my_pokemons_on_user_id"
