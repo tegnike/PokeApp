@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       get :auto_complete_item
       get :auto_complete_move
       get :auto_complete_role
+      get :pokemon_list
     end
   end
 end

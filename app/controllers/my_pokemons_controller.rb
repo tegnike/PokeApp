@@ -47,6 +47,10 @@ class MyPokemonsController < ApplicationController
     render json: roles.to_json
   end
 
+  def pokemon_list
+    send_data render_to_string, filename: "pokemon_list.csv", type: :csv
+  end
+
   private
     def my_pokemon_params
       params.require(:my_pokemon_form).permit(
