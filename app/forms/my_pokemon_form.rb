@@ -40,7 +40,7 @@ class MyPokemonForm
   def pokemon_new
     @pokemon = MyPokemon.new(
       user: User.find(user_id.to_i),
-      pokemon: Pokemon.find_by(name: name),
+      pokemon: Pokemon.find_by(full_name: name),
       status_up: get_status(status_up),
       status_down: get_status(status_down),
       iv_h: integer_string?(iv_h),

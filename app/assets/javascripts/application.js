@@ -67,13 +67,6 @@ $(function() {
     jQuery(this).autocomplete("search", "");
   });
 
-  $("#my_pokemon_form_role").autocomplete({
-    autoFocus: true,
-    minLength: 0,
-    source: "/my_pokemons/auto_complete_role.json"
-  }).focus(function() {
-    jQuery(this).autocomplete("search", "");
-  });
 });
 
 // my_pokemon_form ability 入力不可設定

@@ -61,8 +61,8 @@ class MyPokemon < ApplicationRecord
     "A": 0, "B": 1, "C": 2, "D": 3, "S": 4
   }, _prefix: true
 
-  def pokemon_name
-    pokemon.name
+  def pokemon_full_name
+    pokemon.full_name
   end
 
   def ability
