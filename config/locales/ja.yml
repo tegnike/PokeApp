@@ -1,0 +1,29 @@
+ja:
+  activemodel:
+    attributes:
+      my_pokemon_form:
+        name: ポケモン
+        ability: 特性
+        status_up: 上昇
+        status_down: 下降
+        item: 持ち物
+        iv: 個体値
+        ev: 努力値
+        move: 技
+        role: 役割
+  enums:
+    my_pokemon:
+      status_up:
+        h: HP
+        a: 攻撃
+        b: 防御
+        c: 特攻
+        d: 特防
+        s: 素早さ
+      status_down:
+        h: HP
+        a: 攻撃
+        b: 防御
+        c: 特攻
+        d: 特防
+        s: 素早さ

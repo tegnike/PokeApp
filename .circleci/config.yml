@@ -16,8 +16,9 @@ jobs:
         name: db
         environment:
           POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
           POSTGRES_DB: test
-
+          
       - image: selenium/standalone-chrome
         name: chrome
 
