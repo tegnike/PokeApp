@@ -95,7 +95,9 @@
   <% if @my_pokemons %>
     <% @my_pokemons.each do |pokemon| %>
       <tr>
-        <td colspan="2"><%= pokemon.pokemon_full_name %></td>
+        <td colspan="2">
+          <%= image_tag pokemon.icon_32 %> <%= pokemon.pokemon_full_name %>
+        </td>
         <td>
           <%= pokemon.calc_h %><%= pokemon.check_ev(pokemon.ev_h) %> -
           <%= pokemon.calc_a %><%= pokemon.check_ev(pokemon.ev_a) %> -

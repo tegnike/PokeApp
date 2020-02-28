@@ -65,6 +65,14 @@ class MyPokemon < ApplicationRecord
     pokemon.full_name
   end
 
+  def icon_32
+    if pokemon.form
+      "//sp.raky.net/pokemon/poke/icon32/n#{pokemon.number.to_s + pokemon.form}.gif"
+    else
+      "//sp.raky.net/pokemon/poke/icon32/n#{pokemon.number}.gif"
+    end
+  end
+
   def ability
     my_poke_ability.ability.ability
   end
@@ -79,71 +87,6 @@ class MyPokemon < ApplicationRecord
       pokemon_moves << move.move.move
     end
     pokemon_moves
-  end
-
-  def calc_h
-    return "x" if iv_h == "x"
-    ((pokemon.bs_h + iv_h.to_i / 2.0 + ev_h / 8.0) + 60).floor
-  end
-
-  def calc_a
-    return "x" if iv_a == "x"
-    calc_before_status = ((pokemon.bs_a + iv_a.to_i / 2.0 + ev_a / 8.0) + 5)
-    if status_up == "A"
-      (calc_before_status * 1.1).floor
-    elsif status_down == "A"
-      (calc_before_status * 0.9).floor
-    else
-      calc_before_status.floor
-    end
-  end
-
-  def calc_b
-    return "x" if iv_b == "x"
-    calc_before_status = ((pokemon.bs_b + iv_b.to_i / 2.0 + ev_b / 8.0) + 5)
-    if status_up == "B"
-      (calc_before_status * 1.1).floor
-    elsif status_down == "B"
-      (calc_before_status * 0.9).floor
-    else
-      calc_before_status.floor
-    end
-  end
-
-  def calc_c
-    return "x" if iv_c == "x"
-    calc_before_status = ((pokemon.bs_c + iv_c.to_i / 2.0 + ev_c / 8.0) + 5)
-    if status_up == "C"
-      (calc_before_status * 1.1).floor
-    elsif status_down == "C"
-      (calc_before_status * 0.9).floor
-    else
-      calc_before_status.floor
-    end
-  end
-
-  def calc_d
-    return "x" if iv_d == "x"
-    calc_before_status = ((pokemon.bs_d + iv_d.to_i / 2.0 + ev_d / 8.0) + 5)
-    if status_up == "D"
-      (calc_before_status * 1.1).floor
-    elsif status_down == "D"
-      (calc_before_status * 0.9).floor
-    else
-      calc_before_status.floor
-    end
-  end
-
-  def calc_s
-    return "x" if iv_s == "x"
-    calc_before_status = ((pokemon.bs_s + iv_s.to_i / 2.0 + ev_s / 8.0) + 5)
-    if status_up == "S"
-      (calc_before_status * 1.1).floor
-    elsif status_down == "S"
-      (calc_before_status * 0.9).floor
-    else
-      calc_before_status.floor
-    end
   end
 
   def check_ev(ev)
