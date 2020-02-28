@@ -87,7 +87,7 @@
 <table border="1" style="width: 100%;">
   <tr>
     <th colspan="2">ポケモン</th>
-    <th>ステータス</th>
+    <th width="30%">ステータス</th>
     <th colspan="2">技</th>
     <th>役割</th>
   </tr>
@@ -99,20 +99,20 @@
           <%= image_tag pokemon.icon_32 %> <%= pokemon.pokemon_full_name %>
         </td>
         <td>
-          <%= pokemon.calc_h %><%= pokemon.check_ev(pokemon.ev_h) %> -
-          <%= pokemon.calc_a %><%= pokemon.check_ev(pokemon.ev_a) %> -
-          <%= pokemon.calc_b %><%= pokemon.check_ev(pokemon.ev_b) %> -
-          <%= pokemon.calc_c %><%= pokemon.check_ev(pokemon.ev_c) %> -
-          <%= pokemon.calc_d %><%= pokemon.check_ev(pokemon.ev_d) %> -
-          <%= pokemon.calc_s %><%= pokemon.check_ev(pokemon.ev_s) %>
+          <%= pokemon.av_h %><%= pokemon.check_ev(pokemon.ev_h) %> -
+          <%= pokemon.av_a %><%= pokemon.check_ev(pokemon.ev_a) %> -
+          <%= pokemon.av_b %><%= pokemon.check_ev(pokemon.ev_b) %> -
+          <%= pokemon.av_c %><%= pokemon.check_ev(pokemon.ev_c) %> -
+          <%= pokemon.av_d %><%= pokemon.check_ev(pokemon.ev_d) %> -
+          <%= pokemon.av_s %><%= pokemon.check_ev(pokemon.ev_s) %>
         </td>
-        <td><%= pokemon.moves[0] %></td>
-        <td><%= pokemon.moves[1] %></td>
+        <td width="12%"><%= pokemon.moves[0] %></td>
+        <td width="12%"><%= pokemon.moves[1] %></td>
         <td rowspan="2"><%= pokemon.role %></td>
       </tr>
       <tr>
-        <td><%= pokemon.ability %></td>
-        <td><%= pokemon.item %></td>
+        <td width="12%"><%= pokemon.ability %></td>
+        <td width="12%"><%= pokemon.item %></td>
         <td>
           <%= pokemon.iv_h %> -
           <%= pokemon.iv_a %> -

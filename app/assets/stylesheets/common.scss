@@ -96,3 +96,11 @@ form {
 td, th {
   padding: 5px;
 }
+tr:nth-child(4n+2) td,
+tr:nth-child(4n+3) td {
+  background-color: #eee
+}
+tr:nth-child(4n+4) td,
+tr:nth-child(4n+5) td {
+
+}

@@ -38,9 +38,10 @@ class MyPokemonForm
   end
 
   def pokemon_new
+    pokemon = Pokemon.find_by(full_name: name)
     @pokemon = MyPokemon.new(
       user: User.find(user_id.to_i),
-      pokemon: Pokemon.find_by(full_name: name),
+      pokemon: pokemon,
       status_up: get_status(status_up),
       status_down: get_status(status_down),
       iv_h: integer_string?(iv_h),
@@ -55,6 +56,12 @@ class MyPokemonForm
       ev_c: ev_c.to_i,
       ev_d: ev_d.to_i,
       ev_s: ev_s.to_i,
+      av_h: calc_h(pokemon),
+      av_a: calc_a(pokemon),
+      av_b: calc_b(pokemon),
+      av_c: calc_c(pokemon),
+      av_d: calc_d(pokemon),
+      av_s: calc_s(pokemon),
       role: role
     )
   end
@@ -102,6 +109,71 @@ class MyPokemonForm
         "D"
       when "4"
         "S"
+      end
+    end
+
+    def calc_h(pokemon)
+      return "x" if iv_h == "x"
+      ((pokemon.bs_h + iv_h.to_i / 2.0 + ev_h.to_i / 8.0) + 60).floor
+    end
+
+    def calc_a(pokemon)
+      return "x" if iv_a == "x"
+      calc_before_status = ((pokemon.bs_a + iv_a.to_i / 2.0 + ev_a.to_i / 8.0) + 5)
+      if get_status(status_up) == "A"
+        (calc_before_status * 1.1).floor
+      elsif get_status(status_down) == "A"
+        (calc_before_status * 0.9).floor
+      else
+        calc_before_status.floor
+      end
+    end
+
+    def calc_b(pokemon)
+      return "x" if iv_b == "x"
+      calc_before_status = ((pokemon.bs_b + iv_b.to_i / 2.0 + ev_b.to_i / 8.0) + 5)
+      if get_status(status_up) == "B"
+        (calc_before_status * 1.1).floor
+      elsif get_status(status_down) == "B"
+        (calc_before_status * 0.9).floor
+      else
+        calc_before_status.floor
+      end
+    end
+
+    def calc_c(pokemon)
+      return "x" if iv_c == "x"
+      calc_before_status = ((pokemon.bs_c + iv_c.to_i / 2.0 + ev_c.to_i / 8.0) + 5)
+      if get_status(status_up) == "C"
+        (calc_before_status * 1.1).floor
+      elsif get_status(status_down) == "C"
+        (calc_before_status * 0.9).floor
+      else
+        calc_before_status.floor
+      end
+    end
+
+    def calc_d(pokemon)
+      return "x" if iv_d == "x"
+      calc_before_status = ((pokemon.bs_d + iv_d.to_i / 2.0 + ev_d.to_i / 8.0) + 5)
+      if get_status(status_up) == "D"
+        (calc_before_status * 1.1).floor
+      elsif get_status(status_down) == "D"
+        (calc_before_status * 0.9).floor
+      else
+        calc_before_status.floor
+      end
+    end
+
+    def calc_s(pokemon)
+      return "x" if iv_s == "x"
+      calc_before_status = ((pokemon.bs_s + iv_s.to_i / 2.0 + ev_s.to_i / 8.0) + 5)
+      if get_status(status_up) == "S"
+        (calc_before_status * 1.1).floor
+      elsif get_status(status_down) == "S"
+        (calc_before_status * 0.9).floor
+      else
+        calc_before_status.floor
       end
     end
 end

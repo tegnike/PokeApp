@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2020_02_26_164836) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -84,6 +83,12 @@ ActiveRecord::Schema.define(version: 2020_02_26_164836) do
     t.datetime "updated_at", null: false
     t.integer "status_up"
     t.integer "status_down"
+    t.integer "av_h"
+    t.integer "av_a"
+    t.integer "av_b"
+    t.integer "av_c"
+    t.integer "av_d"
+    t.integer "av_s"
     t.index ["pokemon_id"], name: "index_my_pokemons_on_pokemon_id"
     t.index ["user_id", "pokemon_id"], name: "index_my_pokemons_on_user_id_and_pokemon_id"
     t.index ["user_id"], name: "index_my_pokemons_on_user_id"
