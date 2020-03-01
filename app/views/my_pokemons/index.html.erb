@@ -2,6 +2,8 @@
 
 <% if user_signed_in? %>
   <%= form_with(model: @my_pokemon, method: :post, url: my_pokemons_path, local: true) do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+
     <div class="row first-row">
       <%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -17,13 +19,13 @@
 
       <div class="col-md-2">
         <%= f.label "ステータス補正" %><br>
-        <%= f.label :status_up %>
+        <%= f.label "上昇" %>
         <%= f.radio_button :status_up, 0 %>
         <%= f.radio_button :status_up, 1 %>
         <%= f.radio_button :status_up, 2 %>
         <%= f.radio_button :status_up, 3 %>
         <%= f.radio_button :status_up, 4 %><br>
-        <%= f.label :status_down %>
+        <%= f.label "下降" %>
         <%= f.radio_button :status_down, 0 %>
         <%= f.radio_button :status_down, 1 %>
         <%= f.radio_button :status_down, 2 %>
