@@ -12,12 +12,6 @@ class MyPokemonForm
   validates :status_up, presence: true
   validates :status_down, presence: true
   validates :item, presence: true
-  validates :ev_h, presence: true
-  validates :ev_a, presence: true
-  validates :ev_b, presence: true
-  validates :ev_c, presence: true
-  validates :ev_d, presence: true
-  validates :ev_s, presence: true
   validates :iv_h, numericality: { less_than_or_equal_to: 252 }
   validates :iv_a, numericality: { less_than_or_equal_to: 252 }
   validates :iv_b, numericality: { less_than_or_equal_to: 252 }
@@ -28,13 +22,12 @@ class MyPokemonForm
   validates :role, length: { maximum: 20 }
 
   def save
-    ActiveRecord::Base.transaction do
-      pokemon_new
-      ability_new
-      item_new
-      moves_new
-      @pokemon.save
-    end
+    return false unless valid?
+    pokemon_new
+    ability_new
+    item_new
+    moves_new
+    @pokemon.save
   end
 
   def pokemon_new
