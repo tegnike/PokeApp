@@ -3,12 +3,12 @@ class PokeAbility < ApplicationRecord
   belongs_to :ability
   validates :pokemon_id, presence: true
   validates :ability_id, presence: true
-  validate :abilities_number
+  validate :has_less_three_abilities?
 
   private
-    def abilities_number
-      if self.pokemon.abilities.size >= 3
-        errors.add(:abilities, "は3以下で設定してください")
+    def has_less_three_abilities?
+      if pokemon.abilities.count > 3
+        errors.add(:base, "特性は3つまでしか登録できません")
       end
     end
 end
