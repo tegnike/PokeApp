@@ -19,6 +19,65 @@ ja:
         move_1: 技
         role: 役割
   enums:
+    pokemon:
+      type1:
+        normal: ノーマル
+        fire: ほのお
+        water: みず
+        electric: でんき
+        grass: くさ
+        ice: こおり
+        fighting: かくとう
+        poison: どく
+        ground: じめん
+        flying: ひこう
+        psychic: どく
+        bug: むし
+        rock: いわ
+        host: ゴースト
+        dragon: ドラゴン
+        dark: あく
+        steel: はがね
+        fairy: フェアリー
+      type2:
+        normal: ノーマル
+        fire: ほのお
+        water: みず
+        electric: でんき
+        grass: くさ
+        ice: こおり
+        fighting: かくとう
+        poison: どく
+        ground: じめん
+        flying: ひこう
+        psychic: どく
+        bug: むし
+        rock: いわ
+        host: ゴースト
+        dragon: ドラゴン
+        dark: あく
+        steel: はがね
+        fairy: フェアリー
+    move:
+      type:
+        normal: ノーマル
+        fire: ほのお
+        water: みず
+        electric: でんき
+        grass: くさ
+        ice: こおり
+        fighting: かくとう
+        poison: どく
+        ground: じめん
+        flying: ひこう
+        psychic: どく
+        bug: むし
+        rock: いわ
+        host: ゴースト
+        dragon: ドラゴン
+        dark: あく
+        steel: はがね
+        fairy: フェアリー
     my_pokemon:
       status_up:
         h: HP

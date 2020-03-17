@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :move do
     move { "つのドリル" }
-    type { 0 }
+    type { "normal" }
   end
 end
