@@ -4,14 +4,80 @@ ja:
       my_pokemon_form:
         name: ポケモン
         ability: 特性
-        status_up: 上昇
-        status_down: 下降
+        status_up: ステータス上昇
+        status_down: ステータス下降
         item: 持ち物
         iv: 個体値
         ev: 努力値
+        ev_h: HP 努力値
+        ev_a: 攻撃 努力値
+        ev_b: 防御 努力値
+        ev_c: 特攻 努力値
+        ev_d: 特防 努力値
+        ev_s: 素早さ 努力値
         move: 技
+        move_1: 技
         role: 役割
   enums:
+    pokemon:
+      type1:
+        normal: ノーマル
+        fire: ほのお
+        water: みず
+        electric: でんき
+        grass: くさ
+        ice: こおり
+        fighting: かくとう
+        poison: どく
+        ground: じめん
+        flying: ひこう
+        psychic: どく
+        bug: むし
+        rock: いわ
+        host: ゴースト
+        dragon: ドラゴン
+        dark: あく
+        steel: はがね
+        fairy: フェアリー
+      type2:
+        normal: ノーマル
+        fire: ほのお
+        water: みず
+        electric: でんき
+        grass: くさ
+        ice: こおり
+        fighting: かくとう
+        poison: どく
+        ground: じめん
+        flying: ひこう
+        psychic: どく
+        bug: むし
+        rock: いわ
+        host: ゴースト
+        dragon: ドラゴン
+        dark: あく
+        steel: はがね
+        fairy: フェアリー
+    move:
+      type:
+        normal: ノーマル
+        fire: ほのお
+        water: みず
+        electric: でんき
+        grass: くさ
+        ice: こおり
+        fighting: かくとう
+        poison: どく
+        ground: じめん
+        flying: ひこう
+        psychic: どく
+        bug: むし
+        rock: いわ
+        host: ゴースト
+        dragon: ドラゴン
+        dark: あく
+        steel: はがね
+        fairy: フェアリー
     my_pokemon:
       status_up:
         h: HP

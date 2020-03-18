@@ -12,29 +12,28 @@ class MyPokemonForm
   validates :status_up, presence: true
   validates :status_down, presence: true
   validates :item, presence: true
-  validates :ev_h, presence: true
-  validates :ev_a, presence: true
-  validates :ev_b, presence: true
-  validates :ev_c, presence: true
-  validates :ev_d, presence: true
-  validates :ev_s, presence: true
-  validates :iv_h, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_a, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_b, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_c, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_d, numericality: { less_than_or_equal_to: 252 }
-  validates :iv_s, numericality: { less_than_or_equal_to: 252 }
+  validates :iv_h, numericality: { less_than_or_equal_to: 31 }, allow_blank: true
+  validates :iv_a, numericality: { less_than_or_equal_to: 31 }, allow_blank: true
+  validates :iv_b, numericality: { less_than_or_equal_to: 31 }, allow_blank: true
+  validates :iv_c, numericality: { less_than_or_equal_to: 31 }, allow_blank: true
+  validates :iv_d, numericality: { less_than_or_equal_to: 31 }, allow_blank: true
+  validates :iv_s, numericality: { less_than_or_equal_to: 31 }, allow_blank: true
+  validates :ev_h, numericality: { less_than_or_equal_to: 252 }, allow_blank: true
+  validates :ev_a, numericality: { less_than_or_equal_to: 252 }, allow_blank: true
+  validates :ev_b, numericality: { less_than_or_equal_to: 252 }, allow_blank: true
+  validates :ev_c, numericality: { less_than_or_equal_to: 252 }, allow_blank: true
+  validates :ev_d, numericality: { less_than_or_equal_to: 252 }, allow_blank: true
+  validates :ev_s, numericality: { less_than_or_equal_to: 252 }, allow_blank: true
   validates :move_1, presence: true
   validates :role, length: { maximum: 20 }
 
   def save
-    ActiveRecord::Base.transaction do
-      pokemon_new
-      ability_new
-      item_new
-      moves_new
-      @pokemon.save
-    end
+    return false unless valid?
+    pokemon_new
+    ability_new
+    item_new
+    moves_new
+    @pokemon.save
   end
 
   def pokemon_new
@@ -94,7 +93,7 @@ class MyPokemonForm
       Integer(str)
       str.to_i
     rescue ArgumentError
-      999
+      nil
     end
 
     def get_status(status)
@@ -113,12 +112,12 @@ class MyPokemonForm
     end
 
     def calc_h(pokemon)
-      return "x" if iv_h == "x"
+      return nil if iv_h.blank?
       ((pokemon.bs_h + iv_h.to_i / 2.0 + ev_h.to_i / 8.0) + 60).floor
     end
 
     def calc_a(pokemon)
-      return "x" if iv_a == "x"
+      return nil if iv_a.blank?
       calc_before_status = ((pokemon.bs_a + iv_a.to_i / 2.0 + ev_a.to_i / 8.0) + 5)
       if get_status(status_up) == "A"
         (calc_before_status * 1.1).floor
@@ -130,7 +129,7 @@ class MyPokemonForm
     end
 
     def calc_b(pokemon)
-      return "x" if iv_b == "x"
+      return nil if iv_b.blank?
       calc_before_status = ((pokemon.bs_b + iv_b.to_i / 2.0 + ev_b.to_i / 8.0) + 5)
       if get_status(status_up) == "B"
         (calc_before_status * 1.1).floor
@@ -142,7 +141,7 @@ class MyPokemonForm
     end
 
     def calc_c(pokemon)
-      return "x" if iv_c == "x"
+      return nil if iv_c.blank?
       calc_before_status = ((pokemon.bs_c + iv_c.to_i / 2.0 + ev_c.to_i / 8.0) + 5)
       if get_status(status_up) == "C"
         (calc_before_status * 1.1).floor
@@ -154,7 +153,7 @@ class MyPokemonForm
     end
 
     def calc_d(pokemon)
-      return "x" if iv_d == "x"
+      return nil if iv_d.blank?
       calc_before_status = ((pokemon.bs_d + iv_d.to_i / 2.0 + ev_d.to_i / 8.0) + 5)
       if get_status(status_up) == "D"
         (calc_before_status * 1.1).floor
@@ -166,7 +165,7 @@ class MyPokemonForm
     end
 
     def calc_s(pokemon)
-      return "x" if iv_s == "x"
+      return nil if iv_s.blank?
       calc_before_status = ((pokemon.bs_s + iv_s.to_i / 2.0 + ev_s.to_i / 8.0) + 5)
       if get_status(status_up) == "S"
         (calc_before_status * 1.1).floor

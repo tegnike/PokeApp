@@ -10,26 +10,28 @@ RSpec.describe PokeAbility, type: :model do
     end
   end
 
-  describe "abilities number validation" do
+  describe "has_less_three_abilities?" do
     context "a pokemon has 3 abilities" do
       subject {
-        3.times do
-          create(:poke_ability, pokemon: pokemon)
-          pokemon.reload
-        end
-      }
-      it "shows pokemon is valid" do
-        expect { subject }.not_to raise_error ActiveRecord::RecordInvalid
-      end
-    end
-    context "a pokemon has 4 abilities" do
-      subject {
+        # createだと作成時のインスタンスが数にカウントされないため、
+        # 1多く作成している（他の方法もあると思うので要修正）
         4.times do
           create(:poke_ability, pokemon: pokemon)
           pokemon.reload
         end
       }
-      it "shows pokemon is invalid" do
+      it "shows valid" do
+        expect { subject }.not_to raise_error ActiveRecord::RecordInvalid
+      end
+    end
+    context "a pokemon has 4 abilities" do
+      subject {
+        5.times do
+          create(:poke_ability, pokemon: pokemon)
+          pokemon.reload
+        end
+      }
+      it "shows invalid" do
         expect { subject }.to raise_error ActiveRecord::RecordInvalid
       end
     end

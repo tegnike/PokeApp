@@ -3,6 +3,46 @@ footer {
   margin-top: 30px;
 }
 
+/* error_message */
+
+#error_explanation {
+  margin-bottom: 25px;
+  ul {
+    list-style: disc;
+    padding-inline-start: 40px;
+  }
+}
+
+/* flash_message */
+.flash-message {
+  .alert {
+    width: 100%;
+    margin: 0px auto;
+  }
+}
+.alert-alert {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+.alert-alert hr {
+  border-top-color: #f1b0b7;
+}
+.alert-alert .alert-link {
+  color: #491217;
+}
+.alert-notice {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+.alert-notice hr {
+  border-top-color: #b1dfbb;
+}
+.alert-notice .alert-link {
+  color: #0b2e13;
+}
+
 /* auto-complete */
 .ui-helper-hidden-accessible { display:none; }
 /* リスト全体の背景 */
@@ -25,7 +65,7 @@ footer {
   color: #ffffff;
 }
 ul {
-  list-style: none;
+  // list-style: none;
   padding-left: 0;
 }
 .ui-autocomplete {

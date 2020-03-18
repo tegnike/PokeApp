@@ -2,6 +2,8 @@
 
 <% if user_signed_in? %>
   <%= form_with(model: @my_pokemon, method: :post, url: my_pokemons_path, local: true) do |f| %>
+    <%= render "shared/error_messages", object: f.object %>
+
     <div class="row first-row">
       <%= f.hidden_field :user_id, value: current_user.id %>
 
@@ -17,13 +19,13 @@
 
       <div class="col-md-2">
         <%= f.label "ステータス補正" %><br>
-        <%= f.label :status_up %>
+        <%= f.label "上昇" %>
         <%= f.radio_button :status_up, 0 %>
         <%= f.radio_button :status_up, 1 %>
         <%= f.radio_button :status_up, 2 %>
         <%= f.radio_button :status_up, 3 %>
         <%= f.radio_button :status_up, 4 %><br>
-        <%= f.label :status_down %>
+        <%= f.label "下降" %>
         <%= f.radio_button :status_down, 0 %>
         <%= f.radio_button :status_down, 1 %>
         <%= f.radio_button :status_down, 2 %>
@@ -99,12 +101,12 @@
           <%= image_tag pokemon.icon_32 %> <%= pokemon.pokemon_full_name %>
         </td>
         <td>
-          <%= pokemon.av_h %><%= pokemon.check_ev(pokemon.ev_h) %> -
-          <%= pokemon.av_a %><%= pokemon.check_ev(pokemon.ev_a) %> -
-          <%= pokemon.av_b %><%= pokemon.check_ev(pokemon.ev_b) %> -
-          <%= pokemon.av_c %><%= pokemon.check_ev(pokemon.ev_c) %> -
-          <%= pokemon.av_d %><%= pokemon.check_ev(pokemon.ev_d) %> -
-          <%= pokemon.av_s %><%= pokemon.check_ev(pokemon.ev_s) %>
+          <%= pokemon.check_ivav(pokemon.av_h) %><%= pokemon.check_ev(pokemon.ev_h) %> -
+          <%= pokemon.check_ivav(pokemon.av_a) %><%= pokemon.check_ev(pokemon.ev_a) %> -
+          <%= pokemon.check_ivav(pokemon.av_b) %><%= pokemon.check_ev(pokemon.ev_b) %> -
+          <%= pokemon.check_ivav(pokemon.av_c) %><%= pokemon.check_ev(pokemon.ev_c) %> -
+          <%= pokemon.check_ivav(pokemon.av_d) %><%= pokemon.check_ev(pokemon.ev_d) %> -
+          <%= pokemon.check_ivav(pokemon.av_s) %><%= pokemon.check_ev(pokemon.ev_s) %>
         </td>
         <td width="12%"><%= pokemon.moves[0] %></td>
         <td width="12%"><%= pokemon.moves[1] %></td>
@@ -114,12 +116,12 @@
         <td width="12%"><%= pokemon.ability %></td>
         <td width="12%"><%= pokemon.item %></td>
         <td>
-          <%= pokemon.iv_h %> -
-          <%= pokemon.iv_a %> -
-          <%= pokemon.iv_b %> -
-          <%= pokemon.iv_c %> -
-          <%= pokemon.iv_d %> -
-          <%= pokemon.iv_s %>
+          <%= pokemon.check_ivav(pokemon.iv_h) %> -
+          <%= pokemon.check_ivav(pokemon.iv_a) %> -
+          <%= pokemon.check_ivav(pokemon.iv_b) %> -
+          <%= pokemon.check_ivav(pokemon.iv_c) %> -
+          <%= pokemon.check_ivav(pokemon.iv_d) %> -
+          <%= pokemon.check_ivav(pokemon.iv_s) %>
           （<%= pokemon.status_up %> ↑
           <%= pokemon.status_down %> ↓）
         </td>
