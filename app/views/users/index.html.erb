@@ -1,7 +1,20 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
-<a class="btn btn-primary" href="#" role="button">Link</a>
-<button class="btn btn-primary" type="submit">Button</button>
-<input class="btn btn-primary" type="button" value="Input">
-<input class="btn btn-primary" type="submit" value="Submit">
-<input class="btn btn-primary" type="reset" value="Reset">
+<% content_for(:html_title) { "ユーザ一覧" } %>
+<div class="users-index">
+  <h4 class="title-h4">ユーザ 一覧<span class="number">（<%= User.count %> 件）</span></h4>
+  <ul class="users">
+    <% @users.each do |user| %>
+    <li id="user-<%= user.id %>" class="user-partial">
+      <%= link_to image_tag(user.get_image_url, alt: user.name, class: "user-image"), user, class: "user-image" %>
+      <span class="user-info">
+        <%= link_to user.name, user, class: "user-name" %>
+      </span>
+      <% if current_user.present? && current_user.admin? %>
+      <span class="delete-action">
+        <%= button_to "削除する", user_path(user), data: { confirm: "本当に削除しますか？" },
+            method: :delete, class: "btn btn-danger" %>
+      </span>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

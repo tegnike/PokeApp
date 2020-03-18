@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root "my_pokemons#index"
   devise_for :users
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :destroy]
   resources :my_pokemons, only: [:index, :create] do
     collection do
       get :auto_complete_name
