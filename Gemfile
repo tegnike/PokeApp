@@ -52,6 +52,8 @@ gem "i18n-debug"
 gem "enum_help"
 # rails_admin
 gem "rails_admin"
+# authorization
+gem "pundit"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
