@@ -38,5 +38,8 @@ module App
     config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       "#{html_tag}".html_safe
     end
+
+    # about carrierwave
+    config.autoload_paths += Dir[Rails.root.join("app", "uploaders")]
   end
 end
