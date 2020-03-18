@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :pundit_auth
 
   def index
-    @users = User.all.order(created_at: :desc)
+    @users = User.all.order(created_at: :desc).page(params[:page])
   end
 
   def destroy
