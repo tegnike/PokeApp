@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :destroy]
   resources :my_pokemons, only: [:index, :create] do
     collection do
+      delete :destroy
       get :auto_complete_name
       post :auto_complete_ability
       get :auto_complete_item

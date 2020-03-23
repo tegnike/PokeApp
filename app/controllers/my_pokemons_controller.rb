@@ -1,5 +1,6 @@
 class MyPokemonsController < ApplicationController
   protect_from_forgery
+  before_action :pundit_auth, only: %i(index create destroy pokemon_list)
 
   def index
     @my_pokemon = MyPokemonForm.new
@@ -15,6 +16,20 @@ class MyPokemonsController < ApplicationController
       @my_pokemons = current_user.my_pokemons.all
       flash[:alert] = "登録に失敗しました。"
       render "index"
+    end
+  end
+
+  def destroy
+    ids = params[:checked_my_pokemons]
+    if ids.present?
+      ids.each do |id|
+        my_pokemon = MyPokemon.find(id)
+        if my_pokemon.user.id == current_user.id
+          my_pokemon.destroy
+        end
+      end
+      flash[:notice] = "#{ids.count}件の登録を削除しました。"
+      redirect_to action: "index"
     end
   end
 
@@ -53,5 +68,9 @@ class MyPokemonsController < ApplicationController
         :iv_h, :iv_a, :iv_b, :iv_c, :iv_d, :iv_s,
         :move_1, :move_2, :move_3, :move_4, :role
       )
+    end
+
+    def pundit_auth
+      authorize MyPokemon.new
     end
 end
