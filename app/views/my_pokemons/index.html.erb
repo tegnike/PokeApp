@@ -1,133 +1,151 @@
-<h1>MyPokemons#index</h1>
+<% unless user_signed_in? %>
+  <div>ログインするといろいろな機能が使えます。</div>
+<% else %>
+  <% content_for(:html_title) { "私のポケモン一覧" } %>
+  <div class="my_pokemons-index">
+    <h4 class="title-h4">私のポケモン 一覧
+      <% if @my_pokemons %><span class="number">（<%= @my_pokemons.count %> 件）</span><% end %>
+    </h4>
+    <%= form_with(model: @my_pokemon, method: :post, url: my_pokemons_path, local: true) do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
 
-<% if user_signed_in? %>
-  <%= form_with(model: @my_pokemon, method: :post, url: my_pokemons_path, local: true) do |f| %>
-    <%= render "shared/error_messages", object: f.object %>
+      <div class="row first-row">
+        <%= f.hidden_field :user_id, value: current_user.id %>
 
-    <div class="row first-row">
-      <%= f.hidden_field :user_id, value: current_user.id %>
+        <div class="col-md-2">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
 
-      <div class="col-md-2">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
+        <div class="col-md-2">
+          <%= f.label :ability %>
+          <%= f.text_field :ability, class: "form-control" %>
+        </div>
 
-      <div class="col-md-2">
-        <%= f.label :ability %>
-        <%= f.text_field :ability, class: "form-control" %>
-      </div>
+        <div class="col-md-2">
+          <%= f.label "ステータス補正" %><br>
+          <%= f.label "上昇" %>
+          <%= f.radio_button :status_up, 0 %>
+          <%= f.radio_button :status_up, 1 %>
+          <%= f.radio_button :status_up, 2 %>
+          <%= f.radio_button :status_up, 3 %>
+          <%= f.radio_button :status_up, 4 %><br>
+          <%= f.label "下降" %>
+          <%= f.radio_button :status_down, 0 %>
+          <%= f.radio_button :status_down, 1 %>
+          <%= f.radio_button :status_down, 2 %>
+          <%= f.radio_button :status_down, 3 %>
+          <%= f.radio_button :status_down, 4 %>
+        </div>
 
-      <div class="col-md-2">
-        <%= f.label "ステータス補正" %><br>
-        <%= f.label "上昇" %>
-        <%= f.radio_button :status_up, 0 %>
-        <%= f.radio_button :status_up, 1 %>
-        <%= f.radio_button :status_up, 2 %>
-        <%= f.radio_button :status_up, 3 %>
-        <%= f.radio_button :status_up, 4 %><br>
-        <%= f.label "下降" %>
-        <%= f.radio_button :status_down, 0 %>
-        <%= f.radio_button :status_down, 1 %>
-        <%= f.radio_button :status_down, 2 %>
-        <%= f.radio_button :status_down, 3 %>
-        <%= f.radio_button :status_down, 4 %>
-      </div>
+        <div class="col-md-2">
+          <%= f.label :item %>
+          <%= f.text_field :item, class: "form-control" %>
+        </div>
 
-      <div class="col-md-2">
-        <%= f.label :item %>
-        <%= f.text_field :item, class: "form-control" %>
-      </div>
-
-      <div class="col-md-4">
-        <%= f.label :role %>
-        <%= f.text_field :role, class: "form-control" %>
-      </div>
-    </div>
-
-    <div class="second-row">
-      <%= f.label :move %>
-      <div class="row">
-        <%= f.text_field :move_1, class: "form-control col-md-2" %>
-        <%= f.text_field :move_2, class: "form-control col-md-2" %>
-        <%= f.text_field :move_3, class: "form-control col-md-2" %>
-        <%= f.text_field :move_4, class: "form-control col-md-2" %>
-      </div>
-    </div>
-
-    <div class="row third-row">
-      <div class="col-md-5">
-        <%= f.label :iv %>
-        <div class="ivs">
-          <%= f.select :iv_h, MyPokemon.iv_hs.keys, class: "form-control", value: 31 %>
-          <%= f.select :iv_a, MyPokemon.iv_as.keys, class: "form-control", value: 31 %>
-          <%= f.select :iv_b, MyPokemon.iv_bs.keys, class: "form-control", value: 31 %>
-          <%= f.select :iv_c, MyPokemon.iv_cs.keys, class: "form-control", value: 31 %>
-          <%= f.select :iv_d, MyPokemon.iv_ds.keys, class: "form-control", value: 31 %>
-          <%= f.select :iv_s, MyPokemon.iv_s.keys, class: "form-control", value: 31 %>
+        <div class="col-md-4">
+          <%= f.label :role %>
+          <%= f.text_field :role, class: "form-control" %>
         </div>
       </div>
 
-      <div class="col-md-5">
-        <%= f.label :ev %>
-        <div class="evs">
-          <%= f.number_field :ev_h, class: "form-control" %>
-          <%= f.number_field :ev_a, class: "form-control" %>
-          <%= f.number_field :ev_b, class: "form-control" %>
-          <%= f.number_field :ev_c, class: "form-control" %>
-          <%= f.number_field :ev_d, class: "form-control" %>
-          <%= f.number_field :ev_s, class: "form-control" %>
+      <div class="second-row">
+        <%= f.label :move %>
+        <div class="row">
+          <%= f.text_field :move_1, class: "form-control col-md-2" %>
+          <%= f.text_field :move_2, class: "form-control col-md-2" %>
+          <%= f.text_field :move_3, class: "form-control col-md-2" %>
+          <%= f.text_field :move_4, class: "form-control col-md-2" %>
         </div>
       </div>
 
-      <div class="action col-md-2">
-        <%= f.submit "登録", class: "btn btn-primary" %>
+      <div class="row third-row">
+        <div class="col-md-5">
+          <%= f.label :iv %>
+          <div class="ivs">
+            <%= f.select :iv_h, MyPokemon.iv_hs.keys, class: "form-control", value: 31 %>
+            <%= f.select :iv_a, MyPokemon.iv_as.keys, class: "form-control", value: 31 %>
+            <%= f.select :iv_b, MyPokemon.iv_bs.keys, class: "form-control", value: 31 %>
+            <%= f.select :iv_c, MyPokemon.iv_cs.keys, class: "form-control", value: 31 %>
+            <%= f.select :iv_d, MyPokemon.iv_ds.keys, class: "form-control", value: 31 %>
+            <%= f.select :iv_s, MyPokemon.iv_s.keys, class: "form-control", value: 31 %>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.label :ev %>
+          <div class="evs">
+            <%= f.number_field :ev_h, class: "form-control" %>
+            <%= f.number_field :ev_a, class: "form-control" %>
+            <%= f.number_field :ev_b, class: "form-control" %>
+            <%= f.number_field :ev_c, class: "form-control" %>
+            <%= f.number_field :ev_d, class: "form-control" %>
+            <%= f.number_field :ev_s, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="action col-md-2">
+          <%= f.submit "登録", class: "btn btn-primary" %>
+        </div>
       </div>
-    </div>
-  <% end %>
-<% end %>
+    <% end %>
+  </div>
+  <% if @my_pokemons.present? %>
+    <%= form_with(url: my_pokemons_path, method: :delete, local: true) do |f| %>
+      <table border="1" style="width: 100%;">
+        <tr>
+          <th colspan="2">ポケモン</th>
+          <th width="30%">ステータス</th>
+          <th colspan="2">技</th>
+          <th>役割</th>
+          <th>削除</th>
+        </tr>
 
-<table border="1" style="width: 100%;">
-  <tr>
-    <th colspan="2">ポケモン</th>
-    <th width="30%">ステータス</th>
-    <th colspan="2">技</th>
-    <th>役割</th>
-  </tr>
-
-  <% if @my_pokemons %>
-    <% @my_pokemons.each do |pokemon| %>
-      <tr>
-        <td colspan="2">
-          <%= image_tag pokemon.icon_32 %> <%= pokemon.pokemon_full_name %>
-        </td>
-        <td>
-          <%= pokemon.check_ivav(pokemon.av_h) %><%= pokemon.check_ev(pokemon.ev_h) %> -
-          <%= pokemon.check_ivav(pokemon.av_a) %><%= pokemon.check_ev(pokemon.ev_a) %> -
-          <%= pokemon.check_ivav(pokemon.av_b) %><%= pokemon.check_ev(pokemon.ev_b) %> -
-          <%= pokemon.check_ivav(pokemon.av_c) %><%= pokemon.check_ev(pokemon.ev_c) %> -
-          <%= pokemon.check_ivav(pokemon.av_d) %><%= pokemon.check_ev(pokemon.ev_d) %> -
-          <%= pokemon.check_ivav(pokemon.av_s) %><%= pokemon.check_ev(pokemon.ev_s) %>
-        </td>
-        <td width="12%"><%= pokemon.moves[0] %></td>
-        <td width="12%"><%= pokemon.moves[1] %></td>
-        <td rowspan="2"><%= pokemon.role %></td>
-      </tr>
-      <tr>
-        <td width="12%"><%= pokemon.ability %></td>
-        <td width="12%"><%= pokemon.item %></td>
-        <td>
-          <%= pokemon.check_ivav(pokemon.iv_h) %> -
-          <%= pokemon.check_ivav(pokemon.iv_a) %> -
-          <%= pokemon.check_ivav(pokemon.iv_b) %> -
-          <%= pokemon.check_ivav(pokemon.iv_c) %> -
-          <%= pokemon.check_ivav(pokemon.iv_d) %> -
-          <%= pokemon.check_ivav(pokemon.iv_s) %>
-          （<%= pokemon.status_up %> ↑
-          <%= pokemon.status_down %> ↓）
-        </td>
-        <td><%= pokemon.moves[2] %></td>
-        <td><%= pokemon.moves[3] %></td>
-      </tr>
+        <% if @my_pokemons %>
+          <% @my_pokemons.each do |pokemon| %>
+            <tr>
+              <td colspan="2">
+                <%= image_tag pokemon.icon_32 %> <%= pokemon.pokemon_full_name %>
+              </td>
+              <td>
+                <%= pokemon.check_ivav(pokemon.av_h) %><%= pokemon.check_ev(pokemon.ev_h) %> -
+                <%= pokemon.check_ivav(pokemon.av_a) %><%= pokemon.check_ev(pokemon.ev_a) %> -
+                <%= pokemon.check_ivav(pokemon.av_b) %><%= pokemon.check_ev(pokemon.ev_b) %> -
+                <%= pokemon.check_ivav(pokemon.av_c) %><%= pokemon.check_ev(pokemon.ev_c) %> -
+                <%= pokemon.check_ivav(pokemon.av_d) %><%= pokemon.check_ev(pokemon.ev_d) %> -
+                <%= pokemon.check_ivav(pokemon.av_s) %><%= pokemon.check_ev(pokemon.ev_s) %>
+              </td>
+              <td width="12%"><%= pokemon.moves[0] %></td>
+              <td width="12%"><%= pokemon.moves[1] %></td>
+              <td rowspan="2"><%= pokemon.role %></td>
+              <td rowspan="2" width="5%">
+                <%= f.check_box :checked_my_pokemons,
+                    { multiple: true, class: "my_pokemon_delete" }, pokemon.id, nil %>
+              </td>
+            </tr>
+            <tr>
+              <td width="12%"><%= pokemon.ability %></td>
+              <td width="12%"><%= pokemon.item %></td>
+              <td>
+                <%= pokemon.check_ivav(pokemon.iv_h) %> -
+                <%= pokemon.check_ivav(pokemon.iv_a) %> -
+                <%= pokemon.check_ivav(pokemon.iv_b) %> -
+                <%= pokemon.check_ivav(pokemon.iv_c) %> -
+                <%= pokemon.check_ivav(pokemon.iv_d) %> -
+                <%= pokemon.check_ivav(pokemon.iv_s) %>
+                （<%= pokemon.status_up %> ↑
+                <%= pokemon.status_down %> ↓）
+              </td>
+              <td><%= pokemon.moves[2] %></td>
+              <td><%= pokemon.moves[3] %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+      <%= f.submit("選択したポケモンを削除する",
+            data: { confirm: "本当に削除してもよろしいですか？" },
+            class: "btn btn-danger", id: "my_pokemon_delete_button", disabled: "disabled")
+      %>
     <% end %>
   <% end %>
-</table>
+<% end %>
