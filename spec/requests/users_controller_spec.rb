@@ -21,7 +21,7 @@ RSpec.describe UsersController, type: :request do
         it "can't delete user" do
           test_user = create(:user)
           login(@normal_user)
-          expect{ delete user_path(test_user) }.to raise_error(Pundit::NotAuthorizedError)
+          expect { delete user_path(test_user) }.to raise_error(Pundit::NotAuthorizedError)
         end
       end
       context "get admin_user" do

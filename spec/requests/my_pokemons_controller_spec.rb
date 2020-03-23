@@ -57,7 +57,7 @@ RSpec.describe MyPokemonsController, type: :request do
             ability: "テスト特性",
             status_up: "0",
             status_down: "2",
-            item: nil, #アイテムなし
+            item: nil, # アイテムなし
             ev_h: 4, ev_a: 252, ev_b: 0, ev_c: 0, ev_d: 0, ev_s: 252,
             iv_h: "31", iv_a: "31", iv_b: "31", iv_c: "", iv_d: "31", iv_s: "31",
             move_1: "テストわざ1", move_2: "テストわざ2",
@@ -73,7 +73,7 @@ RSpec.describe MyPokemonsController, type: :request do
 
     describe "#destroy" do
       before { login(@user) }
-      context "try to delete own my_pokemon"do
+      context "try to delete own my_pokemon" do
         it "can delete" do
           my_pokemon = create(:my_pokemon, user: @user)
           my_pokemons_count = MyPokemon.count
